@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+<form>
+
+    <label class="radioClass1"><input type="radio"  ></label>
+    <label class="checkClass1"><input type="checkbox" ></label>
+    <br>
+
+    <input type="radio" id="radio2" name="radio2"><label for="radio2"></label>
+   <input type="checkbox" id="check2"> <label for="check2"></label>
+</form>
+
+</div>
+<script>
+var radio1 = document.querySelector('.radioClass1');
+    radio1.addEventListener('click', function (ev) {
+        if(ev.target.nodeName == 'LABEL'){
+            radio1.classList.add('radioOn');
+        }
+
+    }, false);
+var check1 = document.querySelector('.checkClass1');
+    check1.addEventListener('click', function (ev) {
+        if(ev.target.nodeName == 'LABEL'){//这里一定要判断，否则会冒泡触发两次？？
+            this.classList.toggle('checkOn');
+        }
+    }, false);
+</script>
+</body>
+</html>
