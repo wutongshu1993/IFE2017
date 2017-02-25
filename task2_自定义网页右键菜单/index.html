@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义网页菜单</title>
+    <style>
+        .panel{
+            margin: 20px auto;
+            border: 1px solid #cecece;
+            box-shadow: 5px 5px 5px #888888 ;
+            width: 500px;
+            height: 300px;
+            z-index: 0;
+        }
+
+        .menu {
+            background: white;
+            position: absolute;
+            list-style: none ;
+            border: 1px solid #cecece;
+            width: 100px;
+            height: 150px;
+            padding: 10px;
+            box-shadow: 5px 5px 5px #888888;
+            z-index: 100;
+        }
+        li{
+            line-height: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="panel" id="panel">
+ <h2>可点击区域</h2>
+</div>
+<div >
+    <ul class="menu" id="menu">
+        <li>复制</li>
+        <li>粘贴</li>
+        <li>剪切</li>
+    </ul>
+</div>
+<script>
+    window.onload = init;
+    function init(){
+    var panel = document.getElementById('panel'),
+     menu = document.getElementById('menu'),
+     menuWidth,
+     menuHeight,
+    pageHeight,
+    pageWidth;
+    menuWidth = menu.offsetWidth;
+    menuHeight = menu.offsetHeight;
+    pageHeight = window.outerHeight;
+    pageWidth = window.outerWidth;
+        menu.style.visibility = 'hidden';
+        document.addEventListener('contextmenu', function () {
+            menu.style.visibility = 'hidden';
+        });
+        document.addEventListener('click', function () {
+            menu.style.visibility = 'hidden';
+        });
+    panel.addEventListener('contextmenu', function (e) {
+        e.preventDefault();//取消默认事件
+        e.stopPropagation();//取消冒泡
+        var pageX = e.pageX;
+        var pageY = e.pageY;
+        console.log(pageX);
+        var x = pageX;
+        var y = pageY;
+        if(pageX + menuWidth > pageWidth){
+            x = pageX - menuWidth;
+        }
+        if(pageY + menuHeight > pageHeight){
+            y = pageY - menuHeight;
+        }
+        menu.style.top = y + 'px';
+        menu.style.left = x + 'px';
+        menu.style.visibility = 'visible';
+    }, false)
+    };
+</script>
+</body>
+</html>
