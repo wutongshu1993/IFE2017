@@ -1,43 +1,46 @@
-.radioClass1, #radio2+label::after{
-    width: 13px;
-    height:13px;
+.radioClass1{
+    display: inline-block;
+    width: 16px;
+    height:16px;
     background: url("a.png") -23px -10px no-repeat ;
     cursor: pointer;
+    margin: 0 2px;
 }
-.radioOn{
+
+.radio1:checked+label{
     background: url("a.png") -59px -10px no-repeat ;
 }
-.radioClass1:checked{
-    background: url("a.png") -59px -10px no-repeat ;
-}
-.radioClass1 input[type="radio"]{
- visibility: hidden;
+.radio1, .check1{
+ display: none;
 }
 
  .checkClass1{
-     width: 13px;
-     height:13px;
+     display: inline-block;
+     width: 1rem;
+     height:1rem;
      background: url("a.png") -23px -32px no-repeat ;
      cursor: pointer;
+     margin: 0 2px;
 }
- .checkOn{
+ .checkOn,.check1:checked+label{
      background: url("a.png") -60px -32px no-repeat ;
  }
- .checkClass1 input[type="checkbox"]{
-    visibility: hidden;
- }
-#radio2+label::after{
+#radio2+label::before{
+    position: relative;
+    top: 5px;
     content: '';
     display: inline-block;
     width: 21px;
     height:21px;
-    background: url("a.png") -23px -10px no-repeat ;
+    background: url("a.png") -23px -10px  no-repeat ;
     cursor: pointer;
 }
- #radio2:checked+label::after{
+ #radio2:checked+label::before{
      background: url("a.png") -59px -10px no-repeat ;
  }
- #check2+label::after{
+ #check2+label::before{
+     position: relative;
+     top: 5px;
      content: '';
      display: inline-block;
      width: 21px;
@@ -45,10 +48,9 @@
      background: url("a.png") -23px -32px no-repeat ;
      cursor: pointer;
  }
-#check2:checked+label::after{
+#check2:checked+label::before{
     background: url("a.png") -60px -32px no-repeat ;
 }
  #radio2, #check2{
-     float: right;
-     visibility: hidden;
+    display: none;
  }

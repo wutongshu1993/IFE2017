@@ -8,18 +8,22 @@
 <body>
 <div class="container">
 <form>
-
-    <label class="radioClass1"><input type="radio"  ></label>
-    <label class="checkClass1"><input type="checkbox" ></label>
+使用背景图实现：
     <br>
-
-    <input type="radio" id="radio2" name="radio2"><label for="radio2"></label>
-   <input type="checkbox" id="check2"> <label for="check2"></label>
+    <!--<label class="radioClass1"><input type="radio" value="Radio1" ></label>第一种radio
+    <label class="checkClass1"><input type="checkbox" value="checkbox1" ></label>第一种checkbox-->
+    <input type="radio" class="radio1" value="Radio1" id="radio1"><label class="radioClass1" for="radio1"></label>第一种radio
+    <input type="checkbox" class="check1" value="checkbox1" id="check1"><label class="checkClass1" for="check1"></label>第一种checkbox
+    <br>
+使用伪类实现：
+    <br>
+    <input type="radio" id="radio2" name="radio2" value="radio2"><label for="radio2">第二种radio</label>
+   <input type="checkbox" id="check2" value="checkbox2"> <label for="check2">第二种checkbox</label>
 </form>
 
 </div>
 <script>
-var radio1 = document.querySelector('.radioClass1');
+/*var radio1 = document.querySelector('.radioClass1');
     radio1.addEventListener('click', function (ev) {
         if(ev.target.nodeName == 'LABEL'){
             radio1.classList.add('radioOn');
@@ -31,7 +35,7 @@ var check1 = document.querySelector('.checkClass1');
         if(ev.target.nodeName == 'LABEL'){//这里一定要判断，否则会冒泡触发两次？？
             this.classList.toggle('checkOn');
         }
-    }, false);
+    }, false);*/
 </script>
 </body>
 </html>
