@@ -26,8 +26,9 @@
      background: url("a.png") -60px -32px no-repeat ;
  }
 #radio2+label::before{
-    position: relative;
-    top: 5px;
+   /* position: relative;
+    top: 5px;*/
+    vertical-align: middle;
     content: '';
     display: inline-block;
     width: 21px;
@@ -39,8 +40,9 @@
      background: url("a.png") -59px -10px no-repeat ;
  }
  #check2+label::before{
-     position: relative;
-     top: 5px;
+    /* position: relative;
+     top: 5px;*/
+     vertical-align: middle;
      content: '';
      display: inline-block;
      width: 21px;

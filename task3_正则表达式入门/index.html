@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则表达式入门</title>
+    <style>
+
+        .msg{
+            /*visibility: hidden;*/
+            font-size: 12px;
+            display: block;
+            height: 16px;
+            line-height: 16px;
+
+        }
+        .msg-error{
+            visibility: visible;
+            color: red;
+        }
+        .msg-ok{
+            color: green;
+            visibility: visible;
+        }
+        table{
+            border-collapse: collapse;
+        }
+        td:nth-child(1){
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<form>
+    <table>
+        <tr>
+            <td><label for="tel">手机号：</label></td>
+            <td><input type="text" id="tel" placeholder="测试手机号"></td>
+            <td><button id="tel-btn">测试</button></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><span  class="msg" id="tel-msg"></span></td>
+        </tr>
+        <tr>
+            <td><label for="words">单词：</label></td>
+            <td><input type="text" id="words" placeholder="判断是否有相邻的重复单词"></td>
+            <td> <button id="words-btn">测试</button></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td> <span class="msg" id="words-msg"></span></td>
+        </tr>
+    </table>
+
+</form>
+<script src="../EventUtil.js"></script>
+<script>
+   window.onload = init;
+    function init() {
+      var tel = document.getElementById('tel'),
+              words = document.getElementById('words'),
+              telBtn = document.getElementById('tel-btn'),
+              wordsBtn = document.getElementById('words-btn'),
+              telMsg = document.getElementById('tel-msg'),
+              wordsMsg = document.getElementById('words-msg');
+        var regTel = /^13[0-9]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9]\d{8}/;
+        var regWords =/([a-zA-Z]+)\s\1/g;
+        EventUtil.addHandler(telBtn, 'click', function () {
+            var text = tel.value;
+            if(regTel.test(text)){
+                telMsg.innerHTML = '符合规范';
+                telMsg.classList.remove('msg-error');
+                telMsg.classList.add('msg-ok');
+            }
+            else {
+                telMsg.innerHTML = '类型不符';
+                telMsg.classList.remove('msg-ok');
+                telMsg.classList.add('msg-error');
+            }
+        } );
+        EventUtil.addHandler(wordsBtn, 'click', function () {
+            var text = words.value;
+            if(regWords.test(text)){
+                wordsMsg.innerHTML = '符合规范';
+                wordsMsg.classList.remove('msg-error');
+                wordsMsg.classList.add('msg-ok');
+            }
+            else {
+                wordsMsg.innerHTML = '类型不符';
+                wordsMsg.classList.remove('msg-ok');
+                wordsMsg.classList.add('msg-error');
+            }
+
+        });
+        EventUtil.addHandler(document.forms[0], 'submit', function (e) {
+            e.preventDefault();
+        })
+    };
+</script>
+</body>
+</html>
