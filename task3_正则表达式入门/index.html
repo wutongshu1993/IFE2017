@@ -64,7 +64,7 @@
               telMsg = document.getElementById('tel-msg'),
               wordsMsg = document.getElementById('words-msg');
         var regTel = /^13[0-9]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9]\d{8}/;
-        var regWords =/([a-zA-Z]+)\s+\1/;//这里不能加上g标志，因为使用字面量正则每次都是共享一个RegExp,第二次匹配会接着第一次的结果匹配。如果使用RegExp不会出现这样的问题
+        var regWords =/(\b[a-zA-Z]+)\b\s+\1/;//这里不能加上g标志，因为使用字面量正则每次都是共享一个RegExp,第二次匹配会接着第一次的结果匹配。如果使用RegExp不会出现这样的问题
         EventUtil.addHandler(telBtn, 'click', function () {
             var text = tel.value;
             if(regTel.test(text)){
