@@ -46,7 +46,11 @@ var app1 = new Observer({
 
 var app2 = new Observer({
     university: 'bupt',
-    major: 'computer'
+    major: 'computer',
+    address:{
+        country: 'china',
+        city : 'chengdu'
+    }
 });
 app.data.user = 'mi';
 var t = app.data.user;
@@ -54,5 +58,7 @@ app1.data.name // 你访问了 name
 app.data.age = 100;  // 你设置了 age，新的值为100
 app2.data.university // 你访问了 university
 app2.data.major = 'science'  // 你设置了 major，新的值为 science
+app2.data.address;
+
 
 
