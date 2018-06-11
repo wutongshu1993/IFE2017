@@ -1,5 +1,5 @@
 /**
- * Created by lh on 2017/3/6.
+ * Created by lh on 2017/3/8.
  */
 function Observer(data) {
     this.data = data;
@@ -8,22 +8,14 @@ function Observer(data) {
 }
 var p = Observer.prototype;
 p.walk = function (obj) {
-
-    console.log(this);
     var val;
-    for(var key in obj){//这里需要进行深度递归对每个属性都进行监听
-        // console.log(key);
-
-        if(typeof obj[key] === 'object'){/////为啥这样不起作用呢
-            this.walk(obj[key]);
-        }
-
+    for(var key in obj){
 
         if(obj.hasOwnProperty(key)){
-         val = obj[key];
-         if(typeof val === 'object'){
-             new Observer(val);
-         }
+            val = obj[key];
+            if(typeof val === 'object'){
+                new Observer(val);
+            }
             this.convert(key, val);//依次给所有属性设置get和set函数。
         }
     }
@@ -37,10 +29,12 @@ p.convert = function (key, val) {
             console.log("你访问了"+ key);
             return val;
         },
-        set : function (newVal) {//如果是在data下的address的city进行设置，这里的emit不会起作用。
+        set : function (newVal) {
             console.log("你设置了"+key+' = '+newVal );
             if(newVal === val){return };
             self.eventBus.emit(key, val, newVal);//执行函数
+            //这里需要依次向上进行触发
+
             val = newVal;
             if(typeof newVal === 'object'){
                 new Observer(newVal);//如果新设置的值为对象，为新对象绑定。
@@ -49,14 +43,25 @@ p.convert = function (key, val) {
     })
 };
 p.$watch = function (attr, callback) {
-this.eventBus.on(attr, callback);
-};
+    var self = this;
+    console.log(attr);
+    if (typeof self.data[attr] === 'object') {
+        for (let key in self.data[attr]) {
+            // this.$watch(key, callback);
+            self.eventBus.on(key, callback);
+            // console.log(this.eventBus.handlers);
+        }
+    }
 
+    self.eventBus.on(attr, callback);
+
+
+}
 function PubSub() {
     this.handlers = {};
 }
 PubSub.prototype = {
-    on : function (eventType, handler) {
+    on : function (eventType, handler) {//注册监听事件
         var self = this;
         if(!(eventType in self.handlers)) {
             self.handlers[eventType] = [];
@@ -75,6 +80,7 @@ PubSub.prototype = {
 }
 
 var app2 = new Observer({
+    university: 'bupt',
     major: 'computer',
     address:{
         country: 'china',
@@ -83,11 +89,11 @@ var app2 = new Observer({
 });
 
 
-app2.$watch('city', function () {
-   console.log('city发生改变了')
+app2.$watch('address', function(old, newaddress){
+    console.log('我的地址变了');
 });
-app2.data.address.city= 'dl';
-// console.log(app2.data.address.city);
+// app2.data.address = {country:'hk',city:'cd'};
+app2.data.address.city = 'dl';
 
 
 

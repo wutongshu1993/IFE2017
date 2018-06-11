@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/task21_动态数据绑定3/vueObserve-compiled.js" />
+        <item url="file://$PROJECT_DIR$/task_20_动态数据绑定2/vueObserve-compiled.js" />
+        <item url="file://$PROJECT_DIR$/task15_动态数据绑定/vueObserve-compiled.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/task21_动态数据绑定3/vueObserve-compiled.js" />
+      <root url="file://$PROJECT_DIR$/task_20_动态数据绑定2/vueObserve-compiled.js" />
+      <root url="file://$PROJECT_DIR$/task15_动态数据绑定/vueObserve-compiled.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>
